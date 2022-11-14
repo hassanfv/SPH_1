@@ -5,7 +5,6 @@
 # The difference with augsphx6.3.py is that here we use hij instead of h
 
 import numpy as np
-import matplotlib.pyplot as plt
 import time
 import pickle
 import os
@@ -40,7 +39,7 @@ except:
 	pass
 
 
-with open('Evrard_1472.pkl', 'rb') as f:   # !!!!!! Change epsilon
+with open('Evrard_4224.pkl', 'rb') as f:   # !!!!!! Change epsilon
     res = pickle.load(f)
 resx = res['x'].reshape((len(res['x']),1))
 resy = res['y'].reshape((len(res['x']),1))
@@ -64,7 +63,7 @@ else:
 	nend = nbeg + count
 #----------------------------
 
-epsilon = np.zeros(N) + 0.10
+epsilon = np.zeros(N) + 0.08
 
 MSPH = 1.0 # total gas mass
 
@@ -258,6 +257,8 @@ TA = time.time()
 
 while t < tEnd:
 
+	if rank == 0:
+		TLoop = time.time()
 
 	#--------- v ----------
 	if rank == 0:
@@ -395,7 +396,8 @@ while t < tEnd:
 		with open('./Outputs/' + str(ii).zfill(5) + '.pkl', 'wb') as f:
 			pickle.dump(dictx, f)
 	
-
+	if rank == 0:
+		print('Loop time = ', time.time() - TLoop)
 
 print('elapsed time = ', time.time() - TA)
 

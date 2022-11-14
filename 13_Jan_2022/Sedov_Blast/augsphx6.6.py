@@ -650,6 +650,8 @@ rSPH = np.hstack((resx, resy, resz))
 rDM = rSPH.copy()
 N = len(rSPH)
 
+print('r.shape = ', rSPH.shape)
+
 epsilonSPH = np.zeros(N) + 0.005
 #epsilonDM = np.zeros((1, N)) + 0.20
 epsilon = epsilonSPH #np.hstack((epsilonSPH, epsilonDM))
@@ -686,7 +688,7 @@ vDM = vSPH.copy()
 uFloor = 0.0000005 #0.00245 # This is also the initial u.   NOTE to change this in 'do_sth' function too !!!!!!!!!!!!!!!!!!!!!
 u = np.zeros(N) + uFloor # 0.0002405 is equivalent to T = 1e3 K
 
-u[7812] = 1.0 # This is the expolsive energy injected into the center of the system by one single particle !!!!!!!!!!!!!!
+u[17968] = 1.0 # This is the expolsive energy injected into the center of the system by one single particle !!!!!!!!!!!!!!
 
 #h = smooth_h(rSPH)                # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 h = do_smoothingX((rSPH, rSPH))
